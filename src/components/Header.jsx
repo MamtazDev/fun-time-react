@@ -3,6 +3,7 @@ import logo from "../assets/headerLogo.png";
 import SignIn from "./Modal/SignIn";
 import Profile from "./Modal/Profile";
 import SignUp from "./Modal/SignUp";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [showSignInModal, setShowSignInModal] = useState(false);
@@ -11,9 +12,13 @@ const Header = () => {
   return (
     <header>
       <div className="container mx-auto flex flex-wrap flex-col md:flex-row justify-between items-center py-2">
-        <a className="flex items-center md:mb-0 mb-2">
-          <img className="h-[132px] lg:h-[216px] w-[243px] " src={logo} alt="Logo" />
-        </a>
+        <Link to="/" className="flex items-center md:mb-0 mb-2">
+          <img
+            className="h-[132px] lg:h-[216px] w-[243px] "
+            src={logo}
+            alt="Logo"
+          />
+        </Link>
 
         <div className="flex flex-col md:flex-row gap-1 items-center">
           <button

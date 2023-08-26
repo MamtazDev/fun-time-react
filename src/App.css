@@ -82,3 +82,23 @@ button {
   height: 100%;
   width: 100%;
 }
+
+
+@media only screen and (max-width:1024px) {
+  table {
+    font-size: 14px;
+    width: 100%;
+    line-height: 1.4;
+    overflow: auto;
+  }
+
+  .tableOuter {
+    overflow-x: scroll;
+    overflow: auto;
+  }
+
+  .tableOuter::-webkit-scrollbar {
+    display: none !important;
+  }
+
+}
