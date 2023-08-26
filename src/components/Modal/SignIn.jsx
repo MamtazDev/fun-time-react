@@ -1,30 +1,36 @@
 import React from "react";
-import logo from "../../assets/headerLogo.png"
+import logo from "../../assets/headerLogo.png";
 
-const SignIn = ({ showSignInModal, setShowSignInModal }) => {
+const SignIn = ({
+  showSignInModal,
+  setShowSignInModal,
+  setShowSignUpModal,
+}) => {
+  const handleSignUpShow = () => {
+    setShowSignInModal(false);
+    setShowSignUpModal(true);
+  };
   return (
     <>
       <input
         checked={showSignInModal}
         type="checkbox"
-        id="my_modal_6"
         className="modal-toggle"
       />
       <div className="modal">
         <div className="modal-box max-w-[542px]">
           <div className="p-[55px]">
             <div className="flex justify-center">
-              <img
-                className="h-[200px] w-[250px]"
-                src={logo}
-                alt=""
-              />
+              <img className="h-[200px] w-[250px]" src={logo} alt="" />
             </div>
             <div className="flex flex-wrap justify-between">
               <p className="text-[#504949] text-[18px] md:text-[25px] font-[600] text-center mb-[20px]">
                 Sign In
               </p>
-              <button onClick={()=>setShowSignInModal(false)} className="btn btn-sm btn-circle btn-ghost text-[#FB869E]">
+              <button
+                onClick={() => setShowSignInModal(false)}
+                className="btn btn-sm btn-circle btn-ghost text-[#FB869E]"
+              >
                 ✕
               </button>
             </div>
@@ -57,7 +63,10 @@ const SignIn = ({ showSignInModal, setShowSignInModal }) => {
               <div>
                 <button className="px-2 text-[#979797] text-[14px] font-[400]">
                   Don’t have an account?{" "}
-                  <span className="text-[#3F3F3F] ml-2.5 font-[500]">
+                  <span
+                    onClick={handleSignUpShow}
+                    className="text-[#3F3F3F] ml-2.5 font-[500]"
+                  >
                     Sign up
                   </span>
                 </button>

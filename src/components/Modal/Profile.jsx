@@ -6,7 +6,6 @@ const Profile = ({ showProfileModal, setShowProfileModal }) => {
       <input
         checked={showProfileModal}
         type="checkbox"
-        id="my_modal_6"
         className="modal-toggle"
       />
       <div className="modal">
