@@ -16,7 +16,10 @@ const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
       <div className="modal">
         <div className="modal-box max-w-[843px]">
           <div className="p-[25px] md:p-[55px]">
-            <button className="btn btn-sm btn-circle btn-ghost text-[#FB869E] absolute right-2 top-2">
+            <button
+              onClick={() => setShowTime(false)}
+              className="btn btn-sm btn-circle btn-ghost text-[#FB869E] absolute right-2 top-2"
+            >
               ✕
             </button>
             <div className="max-w-[523px] mx-auto">
