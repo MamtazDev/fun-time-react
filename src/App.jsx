@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
+import Header from "./components/Header";
 
 const App = () => {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline text-red-600">fun time</h1>
+      <Header/>
     </div>
   );
 };
