@@ -17,6 +17,8 @@ const PersonList = ({
     setshowPersonList(false);
   };
 
+  // console.log(showPersonDetails,"pppp")
+
   const handleRequest = () => {
     setshowPersonList(false);
     setshowPersonDetails(true);

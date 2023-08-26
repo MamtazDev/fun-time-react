@@ -9,8 +9,10 @@ const PersonDetails = ({
 }) => {
   const handleBack = () => {
     setshowPersonList(true);
-    showPersonDetails(false);
+    setshowPersonDetails(false);
   };
+
+
 
   const handleRequest = () => {
     setShowConfirmRequrst(true);
