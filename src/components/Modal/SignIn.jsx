@@ -19,7 +19,7 @@ const SignIn = ({
       />
       <div className="modal">
         <div className="modal-box max-w-[542px]">
-          <div className="p-[55px]">
+          <div className="p-[25px] md:p-[55px]">
             <div className="flex justify-center">
               <img className="h-[200px] w-[250px]" src={logo} alt="" />
             </div>

@@ -10,7 +10,7 @@ const Profile = ({ showProfileModal, setShowProfileModal }) => {
       />
       <div className="modal">
         <div className="modal-box max-w-[542px]">
-          <div className="p-[55px] max-w-[300px] mx-auto">
+          <div className="p-[25px] md:p-[55px] max-w-[300px] mx-auto">
             <div className="flex flex-wrap justify-between">
               <p className="text-[#504949] text-[18px] md:text-[25px] font-[600] text-center mb-[20px]">
                 My Profile
