@@ -1,9 +1,19 @@
 import React from "react";
 import ExploreHeader from "../Utils/ExploreHeader";
 
-const Gender = ({ showGender, setShowGender, showTime, setShowTime }) => {
+const Gender = ({
+  showGender,
+  setShowGender,
+  showTime,
+  setShowTime,
+  setShowSendRequest,
+}) => {
   const handleBack = () => {
     setShowTime(true);
+    setShowGender(false);
+  };
+  const handleNext = () => {
+    setShowSendRequest(true);
     setShowGender(false);
   };
   return (
@@ -43,7 +53,10 @@ const Gender = ({ showGender, setShowGender, showTime, setShowTime }) => {
               >
                 Back
               </button>
-              <button className="bg-[#FB869E] border-[1px] border-[#FB869E] outline-none hover:opacity-90 rounded-[20px] px-[25px] py-[10px] lg:px-[50px] lg:py-[10px] text-[#FFF] text-[18px] md:text-[25px] font-[400]">
+              <button
+                onClick={handleNext}
+                className="bg-[#FB869E] border-[1px] border-[#FB869E] outline-none hover:opacity-90 rounded-[20px] px-[25px] py-[10px] lg:px-[50px] lg:py-[10px] text-[#FFF] text-[18px] md:text-[25px] font-[400]"
+              >
                 Next
               </button>
             </div>
