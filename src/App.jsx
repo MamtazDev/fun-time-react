@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Admin from "./pages/Admin";
 import Booking from "./pages/Booking";
 import Companion from "./pages/Companion";
+import Authenticated from "./pages/Authenticated";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/companions" element={<Companion />} />
+        <Route path="/authenticated" element={<Authenticated />} />
       </Routes>
     </div>
   );
