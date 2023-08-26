@@ -6,14 +6,14 @@ const Gender = ({
   setShowGender,
   showTime,
   setShowTime,
-  setShowSendRequest,
+  setshowPersonList,
 }) => {
   const handleBack = () => {
     setShowTime(true);
     setShowGender(false);
   };
   const handleNext = () => {
-    setShowSendRequest(true);
+    setshowPersonList(true);
     setShowGender(false);
   };
   return (

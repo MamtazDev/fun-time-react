@@ -4,28 +4,38 @@ import location from "../../assets/locationBlack.png";
 import clock from "../../assets/clockBlack.png";
 import gender from "../../assets/genderBlack.png";
 
-const SendRequest = (
- { showSendRequest,
-  setShowSendRequest,
+const PersonList = ({
+  showPersonList,
+  setshowPersonList,
   showGender,
-  setShowGender}
-) => {
+  setShowGender,
+  setshowPersonDetails,
+  showPersonDetails,
+}) => {
   const handleBack = () => {
     setShowGender(true);
-    setShowSendRequest(false);
+    setshowPersonList(false);
+  };
+
+  const handleRequest = () => {
+    setshowPersonList(false);
+    setshowPersonDetails(true);
   };
 
   return (
     <>
       <input
-        checked={showSendRequest}
+        checked={showPersonList}
         type="checkbox"
         className="modal-toggle"
       />
       <div className="modal">
         <div className="modal-box max-w-[1443px]">
           <div className="p-[25px] md:p-[55px]">
-            <button onClick={()=>setShowSendRequest(false)} className="btn btn-sm btn-circle btn-ghost text-[#FB869E] absolute right-2 top-2">
+            <button
+              onClick={() => setshowPersonList(false)}
+              className="btn btn-sm btn-circle btn-ghost text-[#FB869E] absolute right-2 top-2"
+            >
               ✕
             </button>
             <div className="max-w-[523px] mx-auto mb-[45px]">
@@ -88,7 +98,10 @@ const SendRequest = (
                         167 cm
                       </p>
                     </div>
-                    <button className="mt-[25px] bg-transparent border-[.5px] border-[#000] hover:border-[#FB869E] outline-none hover:bg-[#FB869E] hover:text-[#FFF] hover:opacity-90 rounded-[10px] px-[15px] py-[5px] text-[#000] text-[15px] font-[500]">
+                    <button
+                      onClick={handleRequest}
+                      className="mt-[25px] bg-transparent border-[.5px] border-[#000] hover:border-[#FB869E] outline-none hover:bg-[#FB869E] hover:text-[#FFF] hover:opacity-90 rounded-[10px] px-[15px] py-[5px] text-[#000] text-[15px] font-[500]"
+                    >
                       Send request
                     </button>
                   </div>
@@ -110,4 +123,4 @@ const SendRequest = (
   );
 };
 
-export default SendRequest;
+export default PersonList;
