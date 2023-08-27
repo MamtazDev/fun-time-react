@@ -24,7 +24,7 @@ const Slider = () => {
         items: 3,
       },
       1000: {
-        items: 6,
+        items: 5,
       },
     },
   };
@@ -36,7 +36,7 @@ const Slider = () => {
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((index) => (
               <div
                 key={index}
-                className="border-[1px] border-[#000] rounded-[15px] mx-[50px]"
+                className="border-[1px] border-[#000] rounded-[15px]"
               >
                 <img className="rounded-[15px]" src={girl} alt="Image" />
               </div>

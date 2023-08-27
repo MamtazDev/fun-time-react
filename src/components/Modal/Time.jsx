@@ -26,7 +26,7 @@ const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
               <ExploreHeader showTime={showTime} />
 
               <div className="pb-[25px] pt-[25px] border-b-[1px] border-[#737373]">
-                <h2 className="text-[25px] md:text-[45px] text-[#000] font-[700] mb-[65px]">
+                <h2 className="text-[25px] md:text-[45px] text-[#000] font-[700] mb-[65px] text-center">
                   Today
                 </h2>
                 <div className="flex items-center justify-center gap-4">

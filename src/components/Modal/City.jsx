@@ -5,6 +5,8 @@ import ExploreHeader from "../Utils/ExploreHeader";
 
 const City = ({ showCity, setShowCity, showTime, setShowTime }) => {
   const [activeCity, setActiveCity] = useState();
+  const [activeCall, setActiveCall] = useState();
+
   const handleTime = () => {
     setShowTime(true);
     setShowCity(false);
@@ -16,12 +18,8 @@ const City = ({ showCity, setShowCity, showTime, setShowTime }) => {
     { name: "Dan Nok" },
     { name: "Had Yai" },
     { name: "Krabi" },
-    {
-      name: "Pattaya",
-    },
-    {
-      name: "Phuket",
-    },
+    { name: "Pattaya" },
+    { name: "Phuket" },
   ];
 
   return (
@@ -30,7 +28,10 @@ const City = ({ showCity, setShowCity, showTime, setShowTime }) => {
       <div className="modal">
         <div className="modal-box max-w-[843px]">
           <div className="p-[25px] md:p-[55px]">
-            <button onClick={()=>setShowCity(false)} className="btn btn-sm btn-circle btn-ghost text-[#FB869E] absolute right-2 top-2">
+            <button
+              onClick={() => setShowCity(false)}
+              className="btn btn-sm btn-circle btn-ghost text-[#FB869E] absolute right-2 top-2"
+            >
               ✕
             </button>
             <div className="max-w-[523px] mx-auto">
@@ -56,10 +57,20 @@ const City = ({ showCity, setShowCity, showTime, setShowTime }) => {
                 ))}
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pb-[25px] pt-[25px] border-b-[1px] border-[#737373]">
-                <button className="activeExplore hover:bg-[#FB869E] hover:text-[#FFF] text-[#FB869E] text-[14px] md:text-[16px] font-[400] border-[1px] border-[#FB869E] outline-none hover:opacity-90 rounded-[15px] px-[10px] py-[6px]">
+                <button
+                  onClick={() => setActiveCall("outCall")}
+                  className={`${
+                    activeCall === "outCall" && "bg-[#FB869E] text-[#FFF]"
+                  } activeExplore hover:bg-[#FB869E] hover:text-[#FFF] text-[#FB869E] border-[#FB869E] text-[14px] md:text-[16px] font-[400] border-[1px]  outline-none hover:opacity-90 rounded-[15px] px-[10px] py-[6px]`}
+                >
                   OUTCALL (She comes to you)
                 </button>
-                <button className="activeExplore hover:bg-[#FB869E] hover:text-[#FFF] hover:border-[#FB869E] text-[#000] text-[14px] md:text-[16px] font-[400] border-[1px] border-[#000] outline-none hover:opacity-90 rounded-[15px] px-[10px] py-[6px]">
+                <button
+                  onClick={() => setActiveCall("inCall")}
+                  className={`${
+                    activeCall === "inCall" && "bg-[#FB869E] text-[#FFF] border-[#FB869E]"
+                  } activeExplore hover:bg-[#FB869E] hover:text-[#FFF] hover:border-[#FB869E] text-[#000] text-[14px] md:text-[16px] font-[400] border-[1px] border-[#000] outline-none hover:opacity-90 rounded-[15px] px-[10px] py-[6px]`}
+                >
                   INCALL(You go to her)
                 </button>
               </div>

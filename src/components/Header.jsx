@@ -11,16 +11,16 @@ const Header = () => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   return (
     <header>
-      <div className="container mx-auto flex flex-wrap flex-col md:flex-row justify-between items-center py-2">
+      <div className="container mx-auto flex flex-wrap flex-col md:flex-row justify-between items-center py-6">
         <Link to="/" className="flex items-center md:mb-0 mb-2">
           <img
-            className="h-[132px] lg:h-[216px] w-[243px] "
+            className="h-[132px] w-[243px] "
             src={logo}
             alt="Logo"
           />
         </Link>
 
-        <div className="flex flex-col md:flex-row gap-1 items-center">
+        <div className="flex flex-col md:flex-row gap-4 items-center">
           <button
             className="inline-flex items-center bg-[#FB869E] border-0 outline-none hover:opacity-90 rounded-[41px] px-[25px] py-[12px] lg:px-[35px] lg:py-[16px] text-[16px] md:text-[20px] text-[#FFF]  font-[600]"
             onClick={() => setShowSignInModal(true)}
