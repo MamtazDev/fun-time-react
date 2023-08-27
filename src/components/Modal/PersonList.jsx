@@ -7,19 +7,20 @@ import gender from "../../assets/genderBlack.png";
 const PersonList = ({
   showPersonList,
   setshowPersonList,
-  showGender,
   setShowGender,
   setshowPersonDetails,
-  showPersonDetails,
+  setShowConfirmRequrst,
 }) => {
   const handleBack = () => {
     setShowGender(true);
     setshowPersonList(false);
   };
 
-  // console.log(showPersonDetails,"pppp")
-
   const handleRequest = () => {
+    setshowPersonList(false);
+    setShowConfirmRequrst(true);
+  };
+  const handleDetails = () => {
     setshowPersonList(false);
     setshowPersonDetails(true);
   };
@@ -67,6 +68,7 @@ const PersonList = ({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-[50px] pb-[35px]">
               {[1, 2, 3].map((data, index) => (
                 <div
+                  onClick={handleDetails}
                   key={index}
                   className="border-[1px] rounded-[25px]  border-[#FB869E]"
                 >

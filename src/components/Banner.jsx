@@ -58,6 +58,7 @@ const Banner = () => {
         setShowGender={setShowGender}
         showPersonDetails={showPersonDetails}
         setshowPersonDetails={setshowPersonDetails}
+        setShowConfirmRequrst={setShowConfirmRequrst}
       />
 
       <PersonDetails

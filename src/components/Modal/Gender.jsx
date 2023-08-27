@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ExploreHeader from "../Utils/ExploreHeader";
 
 const Gender = ({
@@ -8,6 +8,8 @@ const Gender = ({
   setShowTime,
   setshowPersonList,
 }) => {
+  const [gender, setGender] = useState();
+
   const handleBack = () => {
     setShowTime(true);
     setShowGender(false);
@@ -33,14 +35,22 @@ const Gender = ({
 
               <div className="flex items-center justify-center gap-4 pb-[25px] pt-[25px] border-b-[1px] border-[#737373]">
                 <button
+                  onClick={() => setGender("female")}
                   type="radio"
-                  className="bg-transparent  hover:bg-[#FB869E] hover:text-[#FFF] border-[1px] border-[#FB869E] outline-none hover:opacity-90 rounded-[15px] px-[35px] py-[10px]  text-[#FB869E] text-[14px] md:text-[16px] font-[400]"
+                  className={`${
+                    gender === "female" &&
+                    "border-[#FB869E] bg-[#FB869E] text-[#FFF]"
+                  } hover:bg-[#FB869E] hover:text-[#FFF] border-[1px] border-[#FB869E] outline-none hover:opacity-90 rounded-[15px] px-[35px] py-[10px]  text-[#FB869E] text-[14px] md:text-[16px] font-[400]`}
                 >
                   Female
                 </button>
                 <button
+                  onClick={() => setGender("ladyboy")}
                   type="radio"
-                  className="bg-transparent border-[1px] border-[#000] outline-none hover:border-[#FB869E] hover:bg-[#FB869E] hover:text-[#FFF] hover:opacity-90 rounded-[15px] px-[35px] py-[10px] text-[#000] text-[14px] md:text-[16px] font-[400]"
+                  className={`${
+                    gender === "ladyboy" &&
+                    "border-[#FB869E] bg-[#FB869E] text-[#FFF]"
+                  }  border-[1px] border-[#000] outline-none hover:border-[#FB869E] hover:bg-[#FB869E] hover:text-[#FFF] hover:opacity-90 rounded-[15px] px-[35px] py-[10px] text-[#000] text-[14px] md:text-[16px] font-[400]`}
                 >
                   Ladyboy
                 </button>
