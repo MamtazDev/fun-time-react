@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import ExploreHeader from "../Utils/ExploreHeader";
 
 const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
+  const [time, setTime] = useState(3);
   const handleCity = () => {
     setShowCity(true);
     setShowTime(false);
@@ -9,6 +10,16 @@ const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
   const handleGender = () => {
     setShowTime(false);
     setShowGender(true);
+  };
+
+  const handleIncrement = () => {
+    setTime(time + 1);
+  };
+
+  const handleDecrement = () => {
+    if (time > 0) {
+      setTime(time - 1);
+    }
   };
   return (
     <>
@@ -54,13 +65,19 @@ const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
                   Duration
                 </h2>
                 <div className="flex items-center justify-center gap-4">
-                  <p className="text-[40px] md:text-[70px] text-[#000] font-[400]">
+                  <p
+                    onClick={handleDecrement}
+                    className="text-[40px] md:text-[70px] text-[#000] font-[400] cursor-pointer"
+                  >
                     -
                   </p>
                   <p className="text-[40px] md:text-[70px] text-[#000] font-[400]">
-                    3H
+                    {time}H
                   </p>
-                  <p className="text-[40px] md:text-[70px] text-[#000] font-[400]">
+                  <p
+                    onClick={handleIncrement}
+                    className="text-[40px] md:text-[70px] text-[#000] font-[400] cursor-pointer"
+                  >
                     +
                   </p>
                 </div>
