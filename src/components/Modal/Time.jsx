@@ -60,6 +60,7 @@ const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
                   </div>
                 </div>
               </div>
+
               <div className="pb-[25px] pt-[25px] border-b-[1px] border-[#737373]">
                 <h2 className="text-[18px] md:text-[35px] text-[#000] font-[400] mb-[35px]">
                   Duration

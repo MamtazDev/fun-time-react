@@ -4,10 +4,10 @@ import { Route, Routes } from "react-router-dom";
 import Slider from "../components/Slider";
 import Banner from "../components/Banner";
 
-const Home = () => {
+const Home = ({setShowSignInModal}) => {
   return (
     <div>
-      <Banner />
+      <Banner setShowSignInModal={setShowSignInModal} />
       <Slider />
     </div>
   );

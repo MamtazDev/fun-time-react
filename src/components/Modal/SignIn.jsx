@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/headerLogo.png";
+import { AuthContext } from "../context/AuthContext";
 
 const SignIn = ({
   showSignInModal,
   setShowSignInModal,
   setShowSignUpModal,
 }) => {
+
+  const {  signIn } = useContext(AuthContext);
   const handleSignUpShow = () => {
     setShowSignInModal(false);
     setShowSignUpModal(true);
+  };
+  const handleSignin = () => {
+    event.preventDefault();
   };
   return (
     <>
@@ -34,7 +40,7 @@ const SignIn = ({
                 ✕
               </button>
             </div>
-            <form action="">
+            <form onSubmit={handleSignin}>
               <label className="block">
                 <input
                   type="email"
@@ -52,8 +58,9 @@ const SignIn = ({
                 />
               </label>
               <button
+                onClick={signIn}
                 className="items-center bg-[#FB869E] border-0 outline-none hover:opacity-90 rounded-[5px] px-[10px] py-[10px] text-[#FFF] text-[20px] md:text-[25px] md:font-[400] lg:font-[800] w-full"
-                type="submit"
+                // type="submit"
               >
                 Sign In
               </button>

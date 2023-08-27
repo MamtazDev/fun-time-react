@@ -1,18 +1,27 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import City from "./Modal/City";
 import Time from "./Modal/Time";
 import Gender from "./Modal/Gender";
 import PersonList from "./Modal/PersonList";
 import PersonDetails from "./Modal/PersonDetails";
 import ConfirmRequest from "./Modal/ConfirmRequest";
+import { AuthContext } from "./context/AuthContext";
 
-const Banner = () => {
+const Banner = ({ setShowSignInModal }) => {
   const [showCity, setShowCity] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const [showGender, setShowGender] = useState(false);
   const [showPersonList, setshowPersonList] = useState(false);
   const [showPersonDetails, setshowPersonDetails] = useState(false);
   const [showConfirmRequest, setShowConfirmRequrst] = useState(false);
+  const { isSignedIn, signIn, signOut } = useContext(AuthContext);
+  const handleExplore = () => {
+    if (isSignedIn) {
+      setShowCity(true);
+    } else {
+      setShowSignInModal(true);
+    }
+  };
 
   return (
     <section>
@@ -25,7 +34,7 @@ const Banner = () => {
             Where your wildest dreams come true
           </p>
           <button
-            onClick={() => setShowCity(true)}
+            onClick={handleExplore}
             className="inline-flex items-center bg-[#FB869E] border-0 outline-none hover:opacity-90 rounded-[41px] px-[24px] py-[16px] text-[#FBFAF5] text-16 md:text-[20px] font-[700]"
           >
             EXPLORE

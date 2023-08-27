@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -8,17 +8,19 @@ import Booking from "./pages/Booking";
 import Companion from "./pages/Companion";
 import Authenticated from "./pages/Authenticated";
 
+
 const App = () => {
+  const [showSignInModal, setShowSignInModal] = useState(false);
   return (
     <div>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/booking" element={<Booking />} />
-        <Route path="/companions" element={<Companion />} />
-        <Route path="/authenticated" element={<Authenticated />} />
-      </Routes>
+        <Header showSignInModal={showSignInModal} setShowSignInModal={setShowSignInModal} />
+        <Routes>
+          <Route path="/" element={<Home showSignInModal={showSignInModal} setShowSignInModal={setShowSignInModal}  />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/booking" element={<Booking />} />
+          <Route path="/companions" element={<Companion />} />
+          <Route path="/authenticated" element={<Authenticated />} />
+        </Routes>
     </div>
   );
 };
