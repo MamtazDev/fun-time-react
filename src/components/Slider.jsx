@@ -10,6 +10,8 @@ const Slider = () => {
     dots: false,
     autoplay: true,
     smartSpeed: 1000,
+    loop: true,
+    autoplayTimeout: 1000,
     responsive: {
       0: {
         items: 1,
