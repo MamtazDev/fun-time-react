@@ -7,14 +7,14 @@ const SignIn = ({
   setShowSignInModal,
   setShowSignUpModal,
 }) => {
-
-  const {  signIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const handleSignUpShow = () => {
     setShowSignInModal(false);
     setShowSignUpModal(true);
   };
   const handleSignin = () => {
     event.preventDefault();
+    setShowSignInModal(false);
   };
   return (
     <>
