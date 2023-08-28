@@ -13,7 +13,6 @@ const City = ({ showCity, setShowCity, showTime, setShowTime }) => {
   };
   const cities = [
     { name: "Bangkok" },
-    { name: "Bangkok" },
     { name: "Chiangmai" },
     { name: "Dan Nok" },
     { name: "Had Yai" },

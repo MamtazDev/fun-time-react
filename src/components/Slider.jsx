@@ -2,16 +2,27 @@ import girl from "../assets/slider.png";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
-const Slider = () => {
+const Slider = ({ setShowSignInModal, setShowCity }) => {
+  const { isSignedIn } = useContext(AuthContext);
+  const handleExplore = () => {
+    if (isSignedIn) {
+      setShowCity(true);
+    } else {
+      setShowSignInModal(true);
+    }
+  };
+
   const options = {
     margin: 30,
     responsiveClass: true,
     dots: false,
     autoplay: true,
-    smartSpeed: 1000,
+    smartSpeed: 3000,
     loop: true,
-    autoplayTimeout: 1000,
+    autoplayTimeout: 3000,
     responsive: {
       0: {
         items: 1,
@@ -40,7 +51,12 @@ const Slider = () => {
                 key={index}
                 className="border-[1px] border-[#000] rounded-[15px]"
               >
-                <img className="rounded-[15px]" src={girl} alt="Image" />
+                <img
+                  onClick={handleExplore}
+                  className="rounded-[15px]"
+                  src={girl}
+                  alt="Image"
+                />
               </div>
             ))}
           </OwlCarousel>

@@ -7,14 +7,13 @@ import PersonDetails from "./Modal/PersonDetails";
 import ConfirmRequest from "./Modal/ConfirmRequest";
 import { AuthContext } from "./context/AuthContext";
 
-const Banner = ({ setShowSignInModal }) => {
-  const [showCity, setShowCity] = useState(false);
+const Banner = ({ setShowSignInModal, showCity, setShowCity }) => {
   const [showTime, setShowTime] = useState(false);
   const [showGender, setShowGender] = useState(false);
   const [showPersonList, setshowPersonList] = useState(false);
   const [showPersonDetails, setshowPersonDetails] = useState(false);
   const [showConfirmRequest, setShowConfirmRequrst] = useState(false);
-  const { isSignedIn, signIn, signOut } = useContext(AuthContext);
+  const { isSignedIn } = useContext(AuthContext);
   const handleExplore = () => {
     if (isSignedIn) {
       setShowCity(true);
