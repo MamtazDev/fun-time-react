@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ExploreHeader from "../Utils/ExploreHeader";
+import TimePickers from "./TimePicker";
 
 const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
   const [time, setTime] = useState(3);
@@ -40,7 +41,8 @@ const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
                 <h2 className="text-[25px] md:text-[45px] text-[#000] font-[700] mb-[65px] text-center">
                   Today
                 </h2>
-                <div className="flex items-center justify-center gap-4">
+                <TimePickers />
+                {/* <div className="flex items-center justify-center gap-4">
                   <p className="px-[5px] rounded-[20px] text-[45px] md:text-[75px] text-[#FFF] bg-[#FB869E] font-[700]">
                     04
                   </p>
@@ -58,7 +60,7 @@ const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
                       PM
                     </p>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className="pb-[25px] pt-[25px] border-b-[1px] border-[#737373]">

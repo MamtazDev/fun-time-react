@@ -104,3 +104,13 @@ button {
   }
 
 }
+
+
+.react-time-picker {
+  width: 100% !important;
+}
+
+.react-time-picker__wrapper {
+  width: 100% !important;
+  padding: 15px;
+}
