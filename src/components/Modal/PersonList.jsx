@@ -16,9 +16,11 @@ const PersonList = ({
     setshowPersonList(false);
   };
 
-  const handleRequest = () => {
+  const handleRequest = (e) => {
+    e.stopPropagation();
     setshowPersonList(false);
     setShowConfirmRequrst(true);
+    setshowPersonDetails(false);
   };
   const handleDetails = () => {
     setshowPersonList(false);
