@@ -12,8 +12,6 @@ const PersonDetails = ({
     setshowPersonDetails(false);
   };
 
-
-
   const handleRequest = () => {
     setShowConfirmRequrst(true);
     setshowPersonDetails(false);
@@ -87,7 +85,7 @@ const PersonDetails = ({
                 </p>
               </div>
               <div className="flex flex-col md:flex-row justify-between items-center pb-[10px] pt-[10px] border-b-[.5px] border-[##A7A7A7]">
-                <p className="text-[#8C8C8C] text-[16px] font-[400]">Do’s</p>
+                <p className="text-[#8C8C8C] text-[16px] font-[400]">Don't</p>
                 <p className="text-[#000] text-[16px] font-[500]">
                   DDOS SPAM EMAIL GANK SPAMDDOS SPAM
                 </p>

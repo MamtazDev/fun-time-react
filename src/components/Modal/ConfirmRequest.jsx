@@ -54,7 +54,7 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
                     <input
                       type="text"
                       placeholder="e.g John Doe"
-                      className="border-[1px] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
+                      className="border-[1px] bg-[#FBFAF5] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
                     />
                   </div>
                   <div>
@@ -64,7 +64,7 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
                     <input
                       type="email"
                       placeholder="e.g myemail@gmail.com"
-                      className="border-[1px] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
+                      className="border-[1px] bg-[#FBFAF5] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
                     />
                   </div>
                   <div>
@@ -74,7 +74,7 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
                     <input
                       type="text"
                       placeholder="Search here"
-                      className="border-[1px] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
+                      className="border-[1px] bg-[#FBFAF5] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
                     />
                   </div>
                   <div>
@@ -84,7 +84,7 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
                     <input
                       type="text"
                       placeholder="e.g 1337"
-                      className="border-[1px] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
+                      className="border-[1px] bg-[#FBFAF5] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
                     />
                   </div>
                   <div>
@@ -94,7 +94,7 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
                     <input
                       type="text"
                       placeholder="e.g Bring Candy with you"
-                      className="border-[1px] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
+                      className="border-[1px] bg-[#FBFAF5] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
                     />
                   </div>
                 </div>

@@ -8,7 +8,7 @@ const CompanionTable = () => {
             <table className="w-full text-center">
               <thead className="border-b-[1px] border-[#000]">
                 <th>Name</th>
-                <th>Toggle</th>
+                <th>Online</th>
                 <th>Age</th>
                 <th>City</th>
                 <th>Height</th>
@@ -20,7 +20,7 @@ const CompanionTable = () => {
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((index) => (
                   <tr key={index}>
                     <td>Min</td>
-                    <td>Button Here</td>
+                    <td><input type="checkbox" className="toggle  toggle-success"  /></td>
                     <td>33</td>
                     <td>Bangkok</td>
                     <td>163CM</td>

@@ -13,7 +13,8 @@ const Profile = ({ showProfileModal, setShowProfileModal }) => {
           <div className="p-[25px] md:p-[55px] max-w-[300px] mx-auto">
             <div className="flex flex-wrap justify-between">
               <p className="text-[#504949] text-[18px] md:text-[25px] font-[600] text-center mb-[20px]">
-                My Profile
+                {/* My Profile */}
+                Admin Profile
               </p>
               <button onClick={()=>setShowProfileModal(false)} className="btn btn-sm btn-circle btn-ghost text-[#FB869E]">
             

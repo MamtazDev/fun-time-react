@@ -65,7 +65,7 @@ const SignIn = ({
                 Sign In
               </button>
             </form>
-            <div className="flex justify-between items-center mt-[20px]">
+            {/* <div className="flex justify-between items-center mt-[20px]">
               <div className="md:w-[70px] md:h-[1px] bg-[#ACACAC]"></div>
               <div>
                 <button className="px-2 text-[#979797] text-[14px] font-[400]">
@@ -79,7 +79,7 @@ const SignIn = ({
                 </button>
               </div>
               <div className="md:w-[70px] md:h-[1px] bg-[#ACACAC]"></div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

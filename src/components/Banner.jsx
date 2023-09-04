@@ -25,7 +25,7 @@ const Banner = ({ setShowSignInModal, showCity, setShowCity }) => {
   return (
     <section>
       <div className="container mx-auto">
-        <div className="banner pt-[91px] text-center">
+        <div className="banner pt-[30px] text-center">
           <h1 className="text-[#FB869E] text-[38px] md:text-[45px] lg:text-[85px] font-[700]  text-center mb-[30px]">
             A World Of Effortless Fun
           </h1>
