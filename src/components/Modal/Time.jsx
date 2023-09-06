@@ -63,7 +63,7 @@ const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
                 </div> */}
               </div>
 
-              <div className="pb-[25px] pt-[25px] border-b-[1px] border-[#737373]">
+              {/* <div className="pb-[25px] pt-[25px] border-b-[1px] border-[#737373]">
                 <h2 className="text-[18px] md:text-[35px] text-[#000] font-[400] mb-[35px]">
                   Duration
                 </h2>
@@ -84,7 +84,7 @@ const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
                     +
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="pt-[35px] flex flex-col md:flex-row items-center justify-center gap-5 md:gap-[5rem]">
               <button
