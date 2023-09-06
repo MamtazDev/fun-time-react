@@ -67,7 +67,8 @@ const City = ({ showCity, setShowCity, showTime, setShowTime }) => {
                 <button
                   onClick={() => setActiveCall("inCall")}
                   className={`${
-                    activeCall === "inCall" && "bg-[#FB869E] text-[#FFF] border-[#FB869E]"
+                    activeCall === "inCall" &&
+                    "bg-[#FB869E] text-[#FFF] border-[#FB869E]"
                   } activeExplore hover:bg-[#FB869E] hover:text-[#FFF] hover:border-[#FB869E] text-[#000] text-[14px] md:text-[16px] font-[400] border-[1px] border-[#000] outline-none hover:opacity-90 rounded-[15px] px-[10px] py-[6px]`}
                 >
                   INCALL(You go to her)

@@ -90,9 +90,17 @@ const AddCompanion = ({ showAddCompanion, setShowAddCompanion }) => {
               <label className="block">
                 <input
                   type="text"
+                  name="boob"
+                  className="px-3 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full  sm:text-sm text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
+                  placeholder="Boob Type"
+                />
+              </label>
+              <label className="block">
+                <input
+                  type="text"
                   name="do"
                   className="px-3 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full  sm:text-sm text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
-                  placeholder="Do"
+                  placeholder="Can"
                 />
               </label>
               <label className="block">
@@ -100,7 +108,7 @@ const AddCompanion = ({ showAddCompanion, setShowAddCompanion }) => {
                   type="text"
                   name="dont"
                   className="px-3 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full  sm:text-sm text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
-                  placeholder="Don't"
+                  placeholder="Can't"
                 />
               </label>
               <label className="block text-center bg-[#FB869E] border-0 outline-none hover:opacity-90 rounded-[5px] px-[10px] py-[10px] text-[#FFF] text-[20px] md:text-[25px] font-[400] lg:font-[800]  w-full mb-[20px]">

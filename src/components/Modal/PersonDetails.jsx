@@ -74,6 +74,12 @@ const PersonDetails = ({
               </div>
               <div className="flex justify-between items-center pb-[10px] pt-[10px] border-b-[.5px] border-[##A7A7A7]">
                 <p className="text-[#8C8C8C] text-[16px] font-[400]">
+                  Boob Type
+                </p>
+                <p className="text-[#000] text-[16px] font-[500]">Natural</p>
+              </div>
+              <div className="flex justify-between items-center pb-[10px] pt-[10px] border-b-[.5px] border-[##A7A7A7]">
+                <p className="text-[#8C8C8C] text-[16px] font-[400]">
                   Body Type
                 </p>
                 <p className="text-[#000] text-[16px] font-[500]">Athletic</p>
