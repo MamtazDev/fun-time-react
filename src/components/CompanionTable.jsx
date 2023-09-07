@@ -25,7 +25,7 @@ const CompanionTable = () => {
                 <tr key={index}>
                   <td>Min</td>
                   <td>
-                    <input type="checkbox" className="toggle  toggle-success" />
+                  <input type="checkbox" className="toggle toggle-success"  />
                   </td>
                   <td>33</td>
                   <td>Bangkok</td>

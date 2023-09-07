@@ -54,7 +54,7 @@ const TimePicker = () => {
           onChange={handleStartTimeChange}
           showTimeSelect
           timeFormat="hh:mm aa"
-          timeIntervals={15}
+          timeIntervals={60}
           timeCaption="time"
           dateFormat="h:mm aa"
           minDate={new Date()}
@@ -66,7 +66,7 @@ const TimePicker = () => {
           onChange={handleEndTimeChange}
           showTimeSelect
           timeFormat="hh:mm aa"
-          timeIntervals={15}
+          timeIntervals={60}
           timeCaption="time"
           dateFormat="h:mm aa"
           minDate={startTime}
