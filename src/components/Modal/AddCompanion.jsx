@@ -24,20 +24,23 @@ const AddCompanion = ({ showAddCompanion, setShowAddCompanion }) => {
             </div>
             <form action="">
               <label className="block">
-                <input
-                  type="text"
-                  name="gender"
-                  className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
-                  placeholder="Gender"
-                />
+                <select className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]">
+                  <option>Gender</option>
+                  <option value="female">Female</option>
+                  <option value="ladyboy">Ladyboy</option>
+                </select>
               </label>
               <label className="block">
-                <input
-                  type="text"
-                  name="city"
-                  className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
-                  placeholder="City"
-                />
+                <select className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]">
+                  <option>City</option>
+                  <option value="Bangkok">Bangkok</option>
+                  <option value="Chiangmai">Chiangmai</option>
+                  <option value="dannok">Dan Nok</option>
+                  <option value="hadyai">Had Yai</option>
+                  <option value="krabi">Krabi</option>
+                  <option value="pattaya">Pattaya</option>
+                  <option value="phuket">Phuket</option>
+                </select>
               </label>
               <label className="block">
                 <input
@@ -61,6 +64,8 @@ const AddCompanion = ({ showAddCompanion, setShowAddCompanion }) => {
                   name="age"
                   className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
                   placeholder="Age"
+                  max="100"
+                  min="0"
                 />
               </label>
               <label className="block">
@@ -72,12 +77,12 @@ const AddCompanion = ({ showAddCompanion, setShowAddCompanion }) => {
                 />
               </label>
               <label className="block">
-                <input
-                  type="text"
-                  name="bodyType"
-                  className="px-3 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full  sm:text-sm text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
-                  placeholder="Body Type"
-                />
+                <select className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]">
+                  <option>Body Type</option>
+                  <option value="slim">Slim</option>
+                  <option value="athletic">Athletic</option>
+                  <option value="curvy">Curvy</option>
+                </select>
               </label>
               <label className="block">
                 <input
@@ -88,12 +93,11 @@ const AddCompanion = ({ showAddCompanion, setShowAddCompanion }) => {
                 />
               </label>
               <label className="block">
-                <input
-                  type="text"
-                  name="boob"
-                  className="px-3 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full  sm:text-sm text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
-                  placeholder="Boob Type"
-                />
+                <select className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]">
+                  <option>Boob Type</option>
+                  <option value="silicon">Silicon</option>
+                  <option value="natural">Natural</option>
+                </select>
               </label>
               <label className="block">
                 <input
