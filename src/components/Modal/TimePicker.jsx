@@ -7,7 +7,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const TimePicker = () => {
   const [startTime, setStartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
+  const [endTimeOptions, setEndTimeOptions] = useState([]);
+  const [selectedEndTime, setSelectedEndTime] = useState(null);
   const [duration, setDuration] = useState("");
 
   const handleStartTimeChange = (date) => {
@@ -16,25 +17,30 @@ const TimePicker = () => {
 
     if (date >= oneHourLater) {
       setStartTime(date);
+      generateEndTimeOptions(date);
     } else {
       alert("Please select a time at least 1 hour later from now.");
     }
   };
 
-  const handleEndTimeChange = (date) => {
-    const start = new Date(startTime).getTime();
-    const end = new Date(date).getTime();
-
-    if (end <= start + 24 * 60 * 60 * 1000) {
-      setEndTime(date);
-    } else {
-      alert("Please select a time within 24 hours of the start time.");
+  const generateEndTimeOptions = (start) => {
+    const options = [];
+    for (let i = 1; i <= 24; i++) {
+      const nextHour = new Date(start);
+      nextHour.setHours(start.getHours() + i);
+      options.push(nextHour);
     }
+    setEndTimeOptions(options);
+    setSelectedEndTime(options[0]);
+  };
+
+  const handleEndTimeChange = (date) => {
+    setSelectedEndTime(date);
   };
 
   const calculateDuration = () => {
-    if (startTime && endTime) {
-      const diff = endTime.getTime() - startTime.getTime();
+    if (startTime && selectedEndTime) {
+      const diff = selectedEndTime.getTime() - startTime.getTime();
       const hours = Math.floor(diff / (1000 * 60 * 60));
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       setDuration(`${hours} hours ${minutes} minutes`);
@@ -43,7 +49,7 @@ const TimePicker = () => {
 
   useEffect(() => {
     calculateDuration();
-  }, [startTime, endTime]);
+  }, [startTime, selectedEndTime]);
 
   return (
     <div>
@@ -54,7 +60,7 @@ const TimePicker = () => {
           onChange={handleStartTimeChange}
           showTimeSelect
           timeFormat="hh:mm aa"
-          timeIntervals={60}
+          timeIntervals={15}
           timeCaption="time"
           dateFormat="h:mm aa"
           minDate={new Date()}
@@ -62,19 +68,16 @@ const TimePicker = () => {
         <p>to</p>
         <DatePicker
           className="p-4"
-          selected={endTime}
+          selected={selectedEndTime}
           onChange={handleEndTimeChange}
           showTimeSelect
           timeFormat="hh:mm aa"
-          timeIntervals={60}
+          timeIntervals={15}
           timeCaption="time"
           dateFormat="h:mm aa"
           minDate={startTime}
-          filterTime={(time) => {
-            const start = new Date(startTime).getTime();
-            const end = new Date(time).getTime();
-            return end <= start + 24 * 60 * 60 * 1000;
-          }}
+          maxDate={endTimeOptions[endTimeOptions.length - 1]}
+          includeTimes={endTimeOptions}
         />
       </div>
       <p className="text-center text-3xl mt-8">Duration: {duration}</p>
