@@ -52,7 +52,7 @@ const Gender = ({
                     "border-[#FB869E] bg-[#FB869E] text-[#FFF]"
                   }  border-[1px] border-[#000] outline-none hover:border-[#FB869E] hover:bg-[#FB869E] hover:text-[#FFF] hover:opacity-90 rounded-[15px] px-[35px] py-[10px] text-[#000] text-[14px] md:text-[16px] font-[400]`}
                 >
-                  Ladyboy
+                  Transsexual
                 </button>
               </div>
             </div>

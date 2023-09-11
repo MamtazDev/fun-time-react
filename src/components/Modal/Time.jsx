@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import ExploreHeader from "../Utils/ExploreHeader";
 import TimePickers from "./TimePicker";
+import Timepickernew from "./Timepickernew";
 
 const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
-  const [time, setTime] = useState(3);
+  
   const handleCity = () => {
     setShowCity(true);
     setShowTime(false);
@@ -13,15 +14,7 @@ const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
     setShowGender(true);
   };
 
-  const handleIncrement = () => {
-    setTime(time + 1);
-  };
-
-  const handleDecrement = () => {
-    if (time > 0) {
-      setTime(time - 1);
-    }
-  };
+ 
   return (
     <>
       <input checked={showTime} type="checkbox" className="modal-toggle" />
@@ -38,10 +31,12 @@ const Time = ({ showTime, setShowTime, setShowCity, setShowGender }) => {
               <ExploreHeader showTime={showTime} />
 
               <div className="pb-[25px] pt-[25px] border-b-[1px] border-[#737373]">
-                <h2 className="text-[25px] md:text-[45px] text-[#000] font-[700] mb-[65px] text-center">
+                {/* <h2 className="text-[25px] md:text-[45px] text-[#000] font-[700] mb-[65px] text-center">
                   Today
-                </h2>
-                <TimePickers />
+                </h2> */}
+                <Timepickernew />
+                {/* <TimePickers /> */}
+
                 {/* <div className="flex items-center justify-center gap-4">
                   <p className="px-[5px] rounded-[20px] text-[45px] md:text-[75px] text-[#FFF] bg-[#FB869E] font-[700]">
                     04
