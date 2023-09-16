@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../assets/headerLogo.png";
 import SignIn from "./Modal/SignIn";
 import Profile from "./Modal/Profile";
@@ -6,10 +6,39 @@ import SignUp from "./Modal/SignUp";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 
-const Header = ({setShowSignInModal, showSignInModal}) => {
+const Header = ({ setShowSignInModal, showSignInModal }) => {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const { isSignedIn, signOut } = useContext(AuthContext);
+
+  useEffect(() => {
+    // Check if the Google Translate script has already been loaded
+    if (!window.googleTranslateElementInit) {
+      const script = document.createElement("script");
+
+      script.src =
+        "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      document.body.appendChild(script);
+      window.googleTranslateElementInit = () => {
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            includedLanguages: "en,fr",
+            layout:
+              window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          },
+          "google_translate_element"
+        );
+      };
+
+      // Clean up the script and window variable when the component unmounts
+      return () => {
+        document.body.removeChild(script);
+        delete window.googleTranslateElementInit;
+      };
+    }
+  }, []);
 
   return (
     <header>
@@ -19,6 +48,8 @@ const Header = ({setShowSignInModal, showSignInModal}) => {
         </Link>
 
         <div className="flex flex-col md:flex-row gap-4 items-center">
+          <div id="google_translate_element"></div>
+
           {!isSignedIn && (
             <button
               className={`
