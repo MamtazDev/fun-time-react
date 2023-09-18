@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import funtime from "../../assets/funTime.png";
+import { registerUser } from "../../api/auth";
+import { AuthContext } from "../context/AuthContext";
 
 const SignUp = ({
   showSignUpModal,
@@ -9,6 +11,45 @@ const SignUp = ({
   const handleSignInShow = () => {
     setShowSignUpModal(false);
     setShowSignInModal(true);
+  };
+
+  const { user, setUser } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setErrorMessage("");
+    const form = event.target;
+
+    const firstName = form.firstName.value;
+    const lastName = form.lastName.value;
+    const phone = form.phone.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const data = {
+      role: "user",
+      firstName,
+      lastName,
+      phone,
+      email,
+      password,
+    };
+
+    const resData = await registerUser(data);
+
+    if (resData.status === 200) {
+      setErrorMessage("");
+      const userData = {
+        token: resData.data.accessTOken,
+        ...resData.data.user,
+      };
+      localStorage.setItem("funtimeAuth", JSON.stringify(userData));
+      setUser(userData);
+      setShowSignUpModal(false);
+    } else if (resData.status === 403) {
+      setErrorMessage(resData.message);
+    }
   };
   return (
     <>
@@ -35,7 +76,7 @@ const SignUp = ({
                   ✕
                 </button>
               </div>
-              <form action="">
+              <form onSubmit={handleSubmit}>
                 <div className="signup grid grid-cols-1 md:grid-cols-2 items-center w-full gap-2">
                   <label className="block">
                     <input
@@ -90,13 +131,17 @@ const SignUp = ({
                 <div>
                   <button className="px-2 text-[#979797] text-[14px] font-[400]">
                     Already have an account?{" "}
-                    <span onClick={handleSignInShow} className="text-[#3F3F3F] font-[500] ml-2.5">
+                    <span
+                      onClick={handleSignInShow}
+                      className="text-[#3F3F3F] font-[500] ml-2.5"
+                    >
                       Sign in
                     </span>
                   </button>
                 </div>
                 <div className="md:w-[58px] md:h-[1px] bg-[#ACACAC]"></div>
               </div>
+              <p className="text-red-600 text-center">{errorMessage}</p>
             </div>
           </div>
         </div>

@@ -1,77 +1,53 @@
 import React, { useContext, useState } from "react";
 import logo from "../../assets/headerLogo.png";
 import { AuthContext } from "../context/AuthContext";
+import { loginUser } from "../../api/auth";
 
 const SignIn = ({
   showSignInModal,
   setShowSignInModal,
   setShowSignUpModal,
 }) => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, setUser } = useContext(AuthContext);
 
-  const [email, setEmail] = useState(null)
-  const [password, setPassword] = useState(null)
-
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignUpShow = () => {
     setShowSignInModal(false);
     setShowSignUpModal(true);
   };
 
-  const loginData = {
-    email: email,
-    password: password
-  };
-  
-  // Define the URL for the login endpoint
-  const loginUrl = 'http://localhost:8000/api/users/login';
-  
-  // Define the headers for the request
-  const headers = {
-    'Content-Type': 'application/json',
-  };
-
-
-
-  const handleSignin = () => {
+  const handleSignin = async (event) => {
     event.preventDefault();
 
-    console.log(email, password)
+    setErrorMessage("");
 
+    const form = event.target;
 
-          
-      // Create the POST request
-      fetch(loginUrl, {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(loginData) // Convert the login data to a JSON string
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json(); // Parse the JSON response from the server
-        })
-        .then(data => {
-          // Handle the login success here
-          console.log('Login successful:', data);
-          setShowSignInModal(false);
-          localStorage.setItem("token", data.accessTOken)
-        })
-        .catch(error => {
-          // Handle errors here, e.g., authentication failure or network issues
-          console.error('Login failed:', error);
-        });
+    const email = form.email.value;
+    const password = form.password.value;
 
+    const data = {
+      email,
+      password,
+    };
 
-
-
-   
+    const resData = await loginUser(data);
+    if (resData.status === 200) {
+      setErrorMessage("");
+      const userData = {
+        token: resData.accessTOken,
+        ...resData.user,
+      };
+      localStorage.setItem("funtimeAuth", JSON.stringify(userData));
+      setUser(userData);
+      setShowSignInModal(false);
+    } else if (resData.status === 401) {
+      setErrorMessage(resData.message);
+    }
   };
-
-
-  
-
 
   return (
     <>
@@ -104,7 +80,6 @@ const SignIn = ({
                   name="email"
                   className="mt-1 px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
                   placeholder="Email"
-                  onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
               <label className="block">
@@ -113,13 +88,11 @@ const SignIn = ({
                   name="password"
                   className="mt-1 px-3 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full  sm:text-sm text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
                   placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
               <button
-                onClick={signIn}
                 className="items-center bg-[#FB869E] border-0 outline-none hover:opacity-90 rounded-[5px] px-[10px] py-[10px] text-[#FFF] text-[20px] md:text-[25px] md:font-[400] lg:font-[800] w-full"
-                // type="submit"
+                type="submit"
               >
                 Sign In
               </button>
@@ -139,6 +112,7 @@ const SignIn = ({
               </div>
               <div className="md:w-[70px] md:h-[1px] bg-[#ACACAC]"></div>
             </div>
+            <p className="text-red-600 text-center">{errorMessage}</p>
           </div>
         </div>
       </div>

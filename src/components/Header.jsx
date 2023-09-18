@@ -9,7 +9,12 @@ import { AuthContext } from "./context/AuthContext";
 const Header = ({ setShowSignInModal, showSignInModal }) => {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const { isSignedIn, signOut } = useContext(AuthContext);
+  const { isSignedIn, signOut, user, setUser } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    localStorage.removeItem("funtimeAuth");
+    setUser(null);
+  };
 
   useEffect(() => {
     // Check if the Google Translate script has already been loaded
@@ -50,7 +55,7 @@ const Header = ({ setShowSignInModal, showSignInModal }) => {
         <div className="flex flex-col md:flex-row gap-4 items-center">
           {/* <div id="google_translate_element"></div> */}
 
-          {!isSignedIn && (
+          {!user && (
             <button
               className={`
             
@@ -60,7 +65,7 @@ const Header = ({ setShowSignInModal, showSignInModal }) => {
               Sign In
             </button>
           )}
-          {isSignedIn && (
+          {user && (
             <button
               className="inline-flex items-center bg-[#FB869E] border-0 outline-none hover:opacity-90 rounded-[41px] px-[25px] py-[12px] lg:px-[35px] lg:py-[16px] text-[16px] md:text-[20px] text-[#FFF] font-[600]"
               onClick={() => setShowProfileModal(true)}
@@ -69,7 +74,7 @@ const Header = ({ setShowSignInModal, showSignInModal }) => {
             </button>
           )}
 
-          {!isSignedIn && (
+          {!user && (
             <button
               className={` inline-flex items-center bg-transparent  hover:bg-[#FB869E] hover:text-[#FFF] border-[1px] border-[#FB869E] outline-none hover:opacity-90 rounded-[41px] px-[25px] py-[12px] lg:px-[35px] lg:py-[16px] text-[#FB869E] text-[16px] md:text-[20px] font-[600]`}
               onClick={() => setShowSignUpModal(true)}
@@ -77,9 +82,9 @@ const Header = ({ setShowSignInModal, showSignInModal }) => {
               Sign Up
             </button>
           )}
-          {isSignedIn && (
+          {user && (
             <button
-              onClick={signOut}
+              onClick={handleSignOut}
               className=" inline-flex items-center bg-transparent  hover:bg-[#FB869E] hover:text-[#FFF] border-[1px] border-[#FB869E] outline-none hover:opacity-90 rounded-[41px] px-[25px] py-[12px] lg:px-[35px] lg:py-[16px] text-[#FB869E] text-[16px] md:text-[20px] font-[600]"
             >
               Sign Out
