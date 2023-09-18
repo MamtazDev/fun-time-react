@@ -1,7 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
 import details from "../../assets/profile_details.png";
+import { AuthContext } from "../context/AuthContext";
+import { sendRequest, sendSms } from "../../api/bookings";
 
 const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
+  const { requestCompanion } = useContext(AuthContext);
+  console.log(requestCompanion);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const userName = form.name.value;
+    const userEmail = form.email.value;
+    const userPlace = form.place.value;
+    const roomNumber = form.room.value;
+    const specialRequests = form.specialRequest.value;
+    const userData = {
+      userName,
+      userEmail,
+      userPlace,
+      roomNumber,
+      specialRequests,
+    };
+    // console.log(data);
+
+    const resData = await sendRequest({
+      data: userData,
+      id: requestCompanion?._id,
+    });
+    if (resData.status === 200) {
+      const resSmsData = await sendSms("fskd");
+      console.log(resSmsData);
+    }
+    console.log(resData, "ress");
+  };
   return (
     <>
       <input
@@ -32,11 +65,11 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
                   <div>
                     <div>
                       <span className="text-[12px] md:text-[16px] text-[#000] font-[400]">
-                        cowboy
+                        {requestCompanion?.name}
                       </span>
-                      <span className="text-[12px] md:text-[16px] text-[#000] font-[400]">
+                      {/* <span className="text-[12px] md:text-[16px] text-[#000] font-[400]">
                         Female
-                      </span>
+                      </span> */}
                       <p className="text-[12px] md:text-[16px] text-[#000] font-[400]">
                         Today 05:30 PM
                       </p>
@@ -45,13 +78,14 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
                 </div>
               </div>
 
-              <form action="">
+              <form onSubmit={handleSubmit}>
                 <div className="p-[25px] flex flex-col gap-[20px]">
                   <div>
                     <label className="block text-left text-[12px] md:text-[16px] text-[#8B8B8B] font-[600]">
                       Name
                     </label>
                     <input
+                      name="name"
                       type="text"
                       placeholder="e.g John Doe"
                       className="border-[1px] bg-[#FBFAF5] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
@@ -62,6 +96,7 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
                       Email
                     </label>
                     <input
+                      name="email"
                       type="email"
                       placeholder="e.g myemail@gmail.com"
                       className="border-[1px] bg-[#FBFAF5] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
@@ -72,6 +107,7 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
                       Place
                     </label>
                     <input
+                      name="place"
                       type="text"
                       placeholder="Search here"
                       className="border-[1px] bg-[#FBFAF5] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
@@ -82,6 +118,7 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
                       Room
                     </label>
                     <input
+                      name="room"
                       type="text"
                       placeholder="e.g 1337"
                       className="border-[1px] bg-[#FBFAF5] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
@@ -92,6 +129,7 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
                       Special Requests
                     </label>
                     <input
+                      name="specialRequest"
                       type="text"
                       placeholder="e.g Bring Candy with you"
                       className="border-[1px] bg-[#FBFAF5] border-[#686868] rounded-[5px] w-full text-[12] md:text-[16] text-[#8B8B8B] font-[600] px-[10px] py-[6px]"
@@ -107,8 +145,9 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
                     Cancel
                   </button>
                   <button
+                    type="submit"
                     className="bg-[#FB869E] border-[1px] border-[#FB869E] outline-none hover:opacity-90 rounded-[20px] px-[25px] py-[10px] lg:px-[50px] lg:py-[10px] text-[#FFF] text-[18px] md:text-[25px] font-[400]"
-                    onClick={() => setShowConfirmRequrst(false)}
+                    // onClick={() => setShowConfirmRequrst(false)}
                   >
                     Confirm Request
                   </button>

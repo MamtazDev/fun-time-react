@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import pinkArrow from "../../assets/pinkArrow.png";
 import blackArrow from "../../assets/blackArrow.png";
 import ExploreHeader from "../Utils/ExploreHeader";
+import { AuthContext } from "../context/AuthContext";
 
 const City = ({ showCity, setShowCity, showTime, setShowTime }) => {
   const [activeCity, setActiveCity] = useState();
   const [activeCall, setActiveCall] = useState();
+
+  const { setSearchParams } = useContext(AuthContext);
 
   const handleTime = () => {
     setShowTime(true);
@@ -20,6 +23,11 @@ const City = ({ showCity, setShowCity, showTime, setShowTime }) => {
     { name: "Pattaya" },
     { name: "Phuket" },
   ];
+
+  const handleClick = (city) => {
+    setActiveCity(city);
+    setSearchParams((current) => [...current, `city=${city}`]);
+  };
 
   return (
     <>
@@ -39,17 +47,17 @@ const City = ({ showCity, setShowCity, showTime, setShowTime }) => {
               <div className="flex flex-col gap-3">
                 {cities.map((city, index) => (
                   <button
-                    onClick={() => setActiveCity(index)}
+                    onClick={() => handleClick(city.name)}
                     key={index}
                     className={
-                      activeCity === index
+                      activeCity === city.name
                         ? "activeExplore flex justify-between items-center w-full text-[#FB869E] text-[14px] md:text-[16px] md:font-[400] border-[1px] border-[#686868] outline-none hover:opacity-90 rounded-[5px] px-[10px] py-[6px]"
                         : "flex justify-between items-center w-full text-[rgba(0, 0, 0, 0.80)] text-[14px] md:text-[16px] md:font-[400] border-[1px] border-[#686868] outline-none hover:opacity-90 rounded-[5px] px-[10px] py-[6px]"
                     }
                   >
                     {city.name}
                     <img
-                      src={activeCity === index ? pinkArrow : blackArrow}
+                      src={activeCity === city.name ? pinkArrow : blackArrow}
                       alt="Arrow"
                     />
                   </button>
@@ -83,6 +91,7 @@ const City = ({ showCity, setShowCity, showTime, setShowTime }) => {
                 Back
               </button>
               <button
+                disabled={!activeCity}
                 onClick={handleTime}
                 className="bg-[#FB869E] border-[1px] border-[#FB869E] outline-none hover:opacity-90 rounded-[20px] px-[25px] py-[10px] lg:px-[50px] lg:py-[10px] text-[#FFF] text-[18px] md:text-[25px] font-[400]"
               >

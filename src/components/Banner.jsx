@@ -13,9 +13,9 @@ const Banner = ({ setShowSignInModal, showCity, setShowCity }) => {
   const [showPersonList, setshowPersonList] = useState(false);
   const [showPersonDetails, setshowPersonDetails] = useState(false);
   const [showConfirmRequest, setShowConfirmRequrst] = useState(false);
-  const { isSignedIn } = useContext(AuthContext);
+  const { isSignedIn, user } = useContext(AuthContext);
   const handleExplore = () => {
-    if (isSignedIn) {
+    if (user) {
       setShowCity(true);
     } else {
       setShowSignInModal(true);

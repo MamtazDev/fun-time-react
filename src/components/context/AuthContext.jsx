@@ -5,6 +5,8 @@ export const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [searchParams, setSearchParams] = useState([]);
+  const [requestCompanion, setRequrestCompanion] = useState(null);
 
   const signIn = () => {
     localStorage.setItem("isSignedIn", "true");
@@ -22,6 +24,10 @@ export function AuthProvider({ children }) {
     signOut,
     user,
     setUser,
+    searchParams,
+    setSearchParams,
+    requestCompanion,
+    setRequrestCompanion,
   };
 
   return (

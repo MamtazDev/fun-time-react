@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ExploreHeader from "../Utils/ExploreHeader";
+import { AuthContext } from "../context/AuthContext";
 
 const Gender = ({
   showGender,
@@ -9,6 +10,7 @@ const Gender = ({
   setshowPersonList,
 }) => {
   const [gender, setGender] = useState();
+  const { setSearchParams } = useContext(AuthContext);
 
   const handleBack = () => {
     setShowTime(true);
@@ -17,6 +19,7 @@ const Gender = ({
   const handleNext = () => {
     setshowPersonList(true);
     setShowGender(false);
+    setSearchParams((current) => [...current, `gender=${gender}`]);
   };
   return (
     <>
@@ -64,6 +67,7 @@ const Gender = ({
                 Back
               </button>
               <button
+                disabled={!gender}
                 onClick={handleNext}
                 className="bg-[#FB869E] border-[1px] border-[#FB869E] outline-none hover:opacity-90 rounded-[20px] px-[25px] py-[10px] lg:px-[50px] lg:py-[10px] text-[#FFF] text-[18px] md:text-[25px] font-[400]"
               >
