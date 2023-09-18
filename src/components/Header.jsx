@@ -48,7 +48,7 @@ const Header = ({ setShowSignInModal, showSignInModal }) => {
         </Link>
 
         <div className="flex flex-col md:flex-row gap-4 items-center">
-          <div id="google_translate_element"></div>
+          {/* <div id="google_translate_element"></div> */}
 
           {!isSignedIn && (
             <button

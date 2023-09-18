@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/headerLogo.png";
 import { AuthContext } from "../context/AuthContext";
 
@@ -8,14 +8,71 @@ const SignIn = ({
   setShowSignUpModal,
 }) => {
   const { signIn } = useContext(AuthContext);
+
+  const [email, setEmail] = useState(null)
+  const [password, setPassword] = useState(null)
+
+
   const handleSignUpShow = () => {
     setShowSignInModal(false);
     setShowSignUpModal(true);
   };
+
+  const loginData = {
+    email: email,
+    password: password
+  };
+  
+  // Define the URL for the login endpoint
+  const loginUrl = 'http://localhost:8000/api/users/login';
+  
+  // Define the headers for the request
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+
+
+
   const handleSignin = () => {
     event.preventDefault();
-    setShowSignInModal(false);
+
+    console.log(email, password)
+
+
+          
+      // Create the POST request
+      fetch(loginUrl, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(loginData) // Convert the login data to a JSON string
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json(); // Parse the JSON response from the server
+        })
+        .then(data => {
+          // Handle the login success here
+          console.log('Login successful:', data);
+          setShowSignInModal(false);
+          localStorage.setItem("token", data.accessTOken)
+        })
+        .catch(error => {
+          // Handle errors here, e.g., authentication failure or network issues
+          console.error('Login failed:', error);
+        });
+
+
+
+
+   
   };
+
+
+  
+
+
   return (
     <>
       <input
@@ -47,6 +104,7 @@ const SignIn = ({
                   name="email"
                   className="mt-1 px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
                   placeholder="Email"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
               <label className="block">
@@ -55,6 +113,7 @@ const SignIn = ({
                   name="password"
                   className="mt-1 px-3 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full  sm:text-sm text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
                   placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
               <button
