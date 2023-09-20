@@ -5,12 +5,14 @@ import ExploreHeader from "../Utils/ExploreHeader";
 import { AuthContext } from "../context/AuthContext";
 
 const City = ({ showCity, setShowCity, showTime, setShowTime }) => {
-  const [activeCity, setActiveCity] = useState();
+
   const [activeCall, setActiveCall] = useState();
 
-  const { setSearchParams } = useContext(AuthContext);
+  const { setSearchParams, activeCity, setActiveCity } =
+    useContext(AuthContext);
 
   const handleTime = () => {
+    setSearchParams((current) => [...current, `city=${activeCity}`]);
     setShowTime(true);
     setShowCity(false);
   };
@@ -26,7 +28,6 @@ const City = ({ showCity, setShowCity, showTime, setShowTime }) => {
 
   const handleClick = (city) => {
     setActiveCity(city);
-    setSearchParams((current) => [...current, `city=${city}`]);
   };
 
   return (

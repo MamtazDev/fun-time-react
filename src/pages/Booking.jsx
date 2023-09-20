@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getAllBookings } from "../api/bookings";
 
 const Booking = () => {
+  const [bookings, setBookings] = useState([]);
+
+  const fetchBookings = async () => {
+    const resData = await getAllBookings();
+    if (resData) {
+      setBookings(resData);
+    }
+  };
+
+  useEffect(() => {
+    fetchBookings();
+  }, []);
   return (
     <div>
       <section>
@@ -26,11 +39,14 @@ const Booking = () => {
                 <th>Status:</th>
               </thead>
               <tbody>
-                <tr>
-                  <td>Min</td>
-                  <td>John Appleseed</td>
-                  <td>Confirmed</td>
-                </tr>
+                {bookings.length > 0 &&
+                  bookings?.map((data, idx) => (
+                    <tr key={idx}>
+                      <td>{data?.bookedCompanion?.name}</td>
+                      <td>{data?.userName}</td>
+                      <td>Confirmed</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

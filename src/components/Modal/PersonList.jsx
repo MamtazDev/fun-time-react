@@ -95,7 +95,7 @@ const PersonList = ({
                   >
                     <img
                       className="w-full rounded-tl-[25px]  rounded-tr-[25px]"
-                      src={slider}
+                      src={data?.image !== "url" ? data?.image : slider}
                       alt="Profile Image"
                     />
                     <div className="text-left px-[25px] py-[10px]">

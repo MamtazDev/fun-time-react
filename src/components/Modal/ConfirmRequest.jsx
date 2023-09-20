@@ -4,8 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { sendRequest, sendSms } from "../../api/bookings";
 
 const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
-  const { requestCompanion } = useContext(AuthContext);
-  console.log(requestCompanion);
+  const { requestCompanion, user } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,10 +29,17 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
       id: requestCompanion?._id,
     });
     if (resData.status === 200) {
-      const resSmsData = await sendSms("fskd");
-      console.log(resSmsData);
+      const data = {
+        userNumber: user?.phone,
+        companionNumber: requestCompanion?.phone,
+      };
+      const resSmsData = await sendSms(data);
+      setShowConfirmRequrst(false);
+      // console.log(resSmsData, "gg");
+
+      // if (resSmsData) {
+      // }
     }
-    console.log(resData, "ress");
   };
   return (
     <>

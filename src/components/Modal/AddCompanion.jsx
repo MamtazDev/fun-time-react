@@ -1,6 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
+import { createCompanion, uploadImage } from "../../api/companion";
 
-const AddCompanion = ({ showAddCompanion, setShowAddCompanion }) => {
+const AddCompanion = ({
+  showAddCompanion,
+  setShowAddCompanion,
+  allCompanion,
+}) => {
+  const [gender, setGender] = useState("");
+  const [city, setCity] = useState("");
+  const [bodyType, setBodyType] = useState("");
+  const [boobType, setBoobType] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedImage(file);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const name = form.name.value;
+    const phone = form.phone.value;
+    const age = Number(form.age.value);
+    const height = form.height.value;
+    const measurement = form.measurement.value;
+    const can = form.can.value;
+    const cant = form.cant.value;
+
+    const fromData = new FormData();
+    fromData.append("image", selectedImage);
+
+    const imageRes = await uploadImage(fromData);
+
+    if (imageRes.success) {
+      const data = {
+        image: imageRes.data.url,
+        gender,
+        city,
+        name,
+        phone,
+        age,
+        height,
+        bodyType,
+        measurement,
+        boobType,
+        can,
+        cant,
+      };
+
+      const resData = await createCompanion(data);
+      if (resData.status === 200) {
+        allCompanion();
+        setShowAddCompanion(false);
+      }
+    }
+  };
+
+  console.log(gender, city, bodyType, boobType);
   return (
     <>
       <input
@@ -22,16 +81,22 @@ const AddCompanion = ({ showAddCompanion, setShowAddCompanion }) => {
                 ✕
               </button>
             </div>
-            <form action="">
+            <form onSubmit={handleSubmit}>
               <label className="block">
-                <select className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]">
+                <select
+                  onChange={(e) => setGender(e.target.value)}
+                  className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
+                >
                   <option>Gender</option>
                   <option value="female">Female</option>
                   <option value="ladyboy">Ladyboy</option>
                 </select>
               </label>
               <label className="block">
-                <select className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]">
+                <select
+                  onChange={(e) => setCity(e.target.value)}
+                  className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
+                >
                   <option>City</option>
                   <option value="Bangkok">Bangkok</option>
                   <option value="Chiangmai">Chiangmai</option>
@@ -77,7 +142,10 @@ const AddCompanion = ({ showAddCompanion, setShowAddCompanion }) => {
                 />
               </label>
               <label className="block">
-                <select className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]">
+                <select
+                  onChange={(e) => setBodyType(e.target.value)}
+                  className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
+                >
                   <option>Body Type</option>
                   <option value="slim">Slim</option>
                   <option value="athletic">Athletic</option>
@@ -93,7 +161,10 @@ const AddCompanion = ({ showAddCompanion, setShowAddCompanion }) => {
                 />
               </label>
               <label className="block">
-                <select className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]">
+                <select
+                  onChange={(e) => setBoobType(e.target.value)}
+                  className="px-4 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full sm:text-sm  text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
+                >
                   <option>Boob Type</option>
                   <option value="silicon">Silicon</option>
                   <option value="natural">Natural</option>
@@ -102,7 +173,7 @@ const AddCompanion = ({ showAddCompanion, setShowAddCompanion }) => {
               <label className="block">
                 <input
                   type="text"
-                  name="do"
+                  name="can"
                   className="px-3 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full  sm:text-sm text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
                   placeholder="Can"
                 />
@@ -110,16 +181,28 @@ const AddCompanion = ({ showAddCompanion, setShowAddCompanion }) => {
               <label className="block">
                 <input
                   type="text"
-                  name="dont"
+                  name="cant"
                   className="px-3 py-2 bg-white border-[.5px] rounded-[5px] border-[#686868]  outline-none block w-full  sm:text-sm text-[rgba(0, 0, 0, 0.30)] mb-[20px]"
                   placeholder="Can't"
                 />
               </label>
-              <label className="block text-center bg-[#FB869E] border-0 outline-none hover:opacity-90 rounded-[5px] px-[10px] py-[10px] text-[#FFF] text-[20px] md:text-[25px] font-[400] lg:font-[800]  w-full mb-[20px]">
-                Upload Photos
-                <input type="file" className="hidden mb-[20px]" />
-              </label>
+              {selectedImage ? (
+                <p className="text-center">{selectedImage?.name}</p>
+              ) : (
+                <label className="block text-center bg-[#FB869E] border-0 outline-none hover:opacity-90 rounded-[5px] px-[10px] py-[10px] text-[#FFF] text-[20px] md:text-[25px] font-[400] lg:font-[800]  w-full mb-[20px]">
+                  Upload Photos
+                  <input
+                    onChange={handleFileChange}
+                    type="file"
+                    className="hidden mb-[20px]"
+                    accept="image/*"
+                  />
+                </label>
+              )}
               <button
+                disabled={
+                  !selectedImage || !bodyType || !boobType || !gender || !city
+                }
                 className="whitespace-nowrap bg-[#FB869E] border-0 outline-none hover:opacity-90 rounded-[5px] px-[10px] py-[10px] text-[#FFF] text-[20px] md:text-[25px] font-[400] lg:font-[800]  w-full"
                 type="submit"
               >

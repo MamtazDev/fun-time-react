@@ -25,3 +25,8 @@ export const sendSms = async (data) => {
   );
   return res.json();
 };
+
+export const getAllBookings = async () => {
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/booking`);
+  return res.json();
+};

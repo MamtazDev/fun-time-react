@@ -1,6 +1,7 @@
 import React from "react";
+import { dateFormater } from "./utils";
 
-const CompanionTable = () => {
+const CompanionTable = ({ companions }) => {
   return (
     <section>
       <div className="container mx-auto">
@@ -21,24 +22,28 @@ const CompanionTable = () => {
               <th>Joined</th>
             </thead>
             <tbody>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((index) => (
-                <tr key={index}>
-                  <td>Min</td>
-                  <td>
-                  <input type="checkbox" className="toggle toggle-success"  />
-                  </td>
-                  <td>33</td>
-                  <td>Bangkok</td>
-                  <td>163CM</td>
-                  <td>163CM</td>
-                  <td>Curvy</td>
-                  <td>Natural</td>
-                  <td>1802930293</td>
-                  <td>Can</td>
-                  <td>Can't</td>
-                  <td>2023/04/16</td>
-                </tr>
-              ))}
+              {companions.length > 0 &&
+                companions?.map((companion, index) => (
+                  <tr key={index}>
+                    <td>{companion.name}</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        className="toggle toggle-success"
+                      />
+                    </td>
+                    <td>{companion.age}</td>
+                    <td>{companion.city}</td>
+                    <td>{companion.height}</td>
+                    <td>{companion.measurement}</td>
+                    <td>{companion.bodyType}</td>
+                    <td>{companion.boobType}</td>
+                    <td>{companion.phone}</td>
+                    <td>{companion.can}</td>
+                    <td>{companion.cant}</td>
+                    <td>{dateFormater(companion.createdAt)}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
