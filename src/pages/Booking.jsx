@@ -12,6 +12,8 @@ const Booking = () => {
     }
   };
 
+  console.log(bookings, "ff");
+
   useEffect(() => {
     fetchBookings();
   }, []);
@@ -44,7 +46,7 @@ const Booking = () => {
                     <tr key={idx}>
                       <td>{data?.bookedCompanion?.name}</td>
                       <td>{data?.userName}</td>
-                      <td>Confirmed</td>
+                      <td>{data?.status}</td>
                     </tr>
                   ))}
               </tbody>

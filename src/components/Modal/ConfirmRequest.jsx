@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import details from "../../assets/profile_details.png";
 import { AuthContext } from "../context/AuthContext";
 import { sendRequest, sendSms } from "../../api/bookings";
+import { useNavigate } from "react-router-dom";
 
 const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
   const { requestCompanion, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,13 +36,14 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
         companionNumber: requestCompanion?.phone,
       };
       const resSmsData = await sendSms(data);
-      setShowConfirmRequrst(false);
       // console.log(resSmsData, "gg");
 
       // if (resSmsData) {
       // }
     }
   };
+
+  // useEffect(() => {}, [showConfirmRequest]);
   return (
     <>
       <input
