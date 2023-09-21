@@ -43,7 +43,7 @@ const Header = ({ setShowSignInModal, showSignInModal }) => {
         delete window.googleTranslateElementInit;
       };
     }
-  }, []);
+  });
 
   return (
     <header>
