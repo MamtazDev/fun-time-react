@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import ExploreHeader from "../Utils/ExploreHeader";
 import { AuthContext } from "../context/AuthContext";
+import { getSearchCompanion } from "../../api/companion";
 
 const Gender = ({
   showGender,
@@ -10,16 +11,21 @@ const Gender = ({
   setshowPersonList,
 }) => {
   const [gender, setGender] = useState();
-  const { setSearchParams } = useContext(AuthContext);
+  const { setSearchParams,searchParams,setSearchCompanions } = useContext(AuthContext);
 
   const handleBack = () => {
     setShowTime(true);
     setShowGender(false);
   };
-  const handleNext = () => {
+  const handleNext = async() => {
     setshowPersonList(true);
     setShowGender(false);
     setSearchParams((current) => [...current, `gender=${gender}`]);
+
+    const params = [...searchParams,`gender=${gender}`]
+
+    const resData = await getSearchCompanion(params);
+    setSearchCompanions(resData);
   };
   return (
     <>

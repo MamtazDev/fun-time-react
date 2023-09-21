@@ -16,7 +16,7 @@ const Companion = () => {
   return (
     <div>
       <CompanionBanner allCompanion={allCompanion} />
-      <CompanionTable companions={companions} />
+      <CompanionTable companions={companions} allCompanion={allCompanion} />
     </div>
   );
 };

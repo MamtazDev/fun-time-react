@@ -37,3 +37,10 @@ export const getAllCompanions = async () => {
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/companion`);
   return res.json();
 };
+
+export const deleteCompanion = async(id)=>{
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/companion/delete/${id}`,{
+    method:"DELETE"
+  })
+  return res.json()
+}

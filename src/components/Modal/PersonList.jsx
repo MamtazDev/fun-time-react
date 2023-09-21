@@ -4,7 +4,6 @@ import location from "../../assets/locationBlack.png";
 import clock from "../../assets/clockBlack.png";
 import gender from "../../assets/genderBlack.png";
 import { AuthContext } from "../context/AuthContext";
-import { getSearchCompanion } from "../../api/companion";
 
 const PersonList = ({
   showPersonList,
@@ -13,7 +12,7 @@ const PersonList = ({
   setshowPersonDetails,
   setShowConfirmRequrst,
 }) => {
-  const { searchParams, setRequrestCompanion } = useContext(AuthContext);
+  const { searchParams, searchCompanions,  } = useContext(AuthContext);
   const handleBack = () => {
     setShowGender(true);
     setshowPersonList(false);
@@ -31,19 +30,20 @@ const PersonList = ({
     setshowPersonDetails(true);
   };
 
-  console.log(searchParams);
+const city = searchParams[0]
+
 
   const [companions, setCompanions] = useState([]);
 
-  const getCompanion = async () => {
-    const resData = await getSearchCompanion(searchParams);
-    // console.log(resData, "gg");
-    setCompanions(resData);
-  };
+  // const getCompanion = async () => {
+  //   const resData = await getSearchCompanion(searchParams);
+  //   // console.log(resData, "gg");
+  //   setCompanions(resData);
+  // };
 
-  useEffect(() => {
-    getCompanion();
-  }, [searchParams]);
+  // useEffect(() => {
+  //   getCompanion();
+  // }, [showPersonList]);
 
   return (
     <>
@@ -86,8 +86,8 @@ const PersonList = ({
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-[50px] pb-[35px]">
-              {companions.length > 0 &&
-                companions?.map((data, index) => (
+              {searchCompanions.length > 0 &&
+                searchCompanions?.map((data, index) => (
                   <div
                     onClick={() => handleDetails(data)}
                     key={index}

@@ -8,25 +8,36 @@ import Booking from "./pages/Booking";
 import Companion from "./pages/Companion";
 import Authenticated from "./pages/Authenticated";
 import { AuthContext } from "./components/context/AuthContext";
+import ConfirmAdult from "./components/Modal/ConfirmAdult";
 
 const App = () => {
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showCity, setShowCity] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const { setUser } = useContext(AuthContext);
+  const [confirmModal, setConfirmModal]=useState(true)
 
   useEffect(() => {
     const user = localStorage.getItem("funtimeAuth");
+    const ConfirmAdult = localStorage.getItem("confrimAdult")
+
 
     if (user) {
       setUser(JSON.parse(user));
       setAuthChecked(true);
-    } else {
+    } 
+    if(ConfirmAdult){
+      setConfirmModal(false)
+      setAuthChecked(true);
+    }
+    else {
       setAuthChecked(true);
     }
   }, []);
+
   return authChecked ? (
     <div>
+      <ConfirmAdult confirmModal={confirmModal} setConfirmModal={setConfirmModal}/>
       <Header
         showSignInModal={showSignInModal}
         setShowSignInModal={setShowSignInModal}
