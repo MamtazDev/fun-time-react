@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const Timepickernew = () => {
-  const [time, setTime] = useState(2);
-  const [clock, setClock] = useState();
+  const { time, setTime, clock, setClock } = useContext(AuthContext)
   const [minutesToAdd, setMinutesToAdd] = useState(0);
   const [title, setTitle] = useState("Today");
+
+  console.log(clock, "clock")
+  console.log(time, "time")
 
   useEffect(() => {
     const updateClock = () => {

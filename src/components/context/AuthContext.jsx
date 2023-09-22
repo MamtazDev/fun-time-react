@@ -8,6 +8,9 @@ export function AuthProvider({ children }) {
   const [searchParams, setSearchParams] = useState([]);
   const [requestCompanion, setRequrestCompanion] = useState(null);
   const [activeCity, setActiveCity] = useState();
+  const [time, setTime] = useState(2);
+  const [clock, setClock] = useState();
+  const [searchCompanions, setSearchCompanions] = useState([]);
 
   const signIn = () => {
     localStorage.setItem("isSignedIn", "true");
@@ -31,6 +34,12 @@ export function AuthProvider({ children }) {
     setRequrestCompanion,
     activeCity,
     setActiveCity,
+    time, 
+    setTime,
+    clock,
+    setClock,
+    searchCompanions, 
+    setSearchCompanions
   };
 
   return (

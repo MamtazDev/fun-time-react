@@ -16,34 +16,34 @@ const Header = ({ setShowSignInModal, showSignInModal }) => {
     setUser(null);
   };
 
-  useEffect(() => {
-    // Check if the Google Translate script has already been loaded
-    if (!window.googleTranslateElementInit) {
-      const script = document.createElement("script");
+  // useEffect(() => {
+  //   // Check if the Google Translate script has already been loaded
+  //   if (!window.googleTranslateElementInit) {
+  //     const script = document.createElement("script");
 
-      script.src =
-        "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-      script.async = true;
-      document.body.appendChild(script);
-      window.googleTranslateElementInit = () => {
-        new window.google.translate.TranslateElement(
-          {
-            pageLanguage: "en",
-            includedLanguages: "en,fr",
-            layout:
-              window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-          },
-          "google_translate_element"
-        );
-      };
+  //     script.src =
+  //       "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+  //     script.async = true;
+  //     document.body.appendChild(script);
+  //     window.googleTranslateElementInit = () => {
+  //       new window.google.translate.TranslateElement(
+  //         {
+  //           pageLanguage: "en",
+  //           includedLanguages: "en,fr",
+  //           layout:
+  //             window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+  //         },
+  //         "google_translate_element"
+  //       );
+  //     };
 
-      // Clean up the script and window variable when the component unmounts
-      return () => {
-        document.body.removeChild(script);
-        delete window.googleTranslateElementInit;
-      };
-    }
-  }, []);
+  //     // Clean up the script and window variable when the component unmounts
+  //     return () => {
+  //       document.body.removeChild(script);
+  //       delete window.googleTranslateElementInit;
+  //     };
+  //   }
+  // });
 
   return (
     <header>
@@ -51,10 +51,9 @@ const Header = ({ setShowSignInModal, showSignInModal }) => {
         <Link to="/" className="flex items-center md:mb-0 mb-2">
           <img className="h-[132px] w-[243px] " src={logo} alt="Logo" />
         </Link>
-
         <div className="flex flex-col md:flex-row gap-4 items-center">
-          {/* <div id="google_translate_element"></div> */}
-
+        <div id="google_translate_element"></div>
+      
           {!user && (
             <button
               className={`

@@ -3,10 +3,12 @@ import details from "../../assets/profile_details.png";
 import { AuthContext } from "../context/AuthContext";
 import { sendRequest, sendSms } from "../../api/bookings";
 import { useNavigate } from "react-router-dom";
+import { dateFormater } from "../utils";
 
 const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
-  const { requestCompanion, user } = useContext(AuthContext);
+  const { requestCompanion, user,clock,time } = useContext(AuthContext);
   const navigate = useNavigate();
+  console.log(requestCompanion,'gg')
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,14 +19,25 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
     const userPlace = form.place.value;
     const roomNumber = form.room.value;
     const specialRequests = form.specialRequest.value;
+
+    const date =  dateFormater(new Date())
+
     const userData = {
       userName,
       userEmail,
       userPlace,
+      userPhoneNumber: user?.phone,
       roomNumber,
       specialRequests,
+      date,
+      clock,
+      time,
     };
-    // console.log(data);
+
+
+  
+
+
 
     const resData = await sendRequest({
       data: userData,
@@ -34,8 +47,17 @@ const ConfirmRequest = ({ showConfirmRequest, setShowConfirmRequrst }) => {
       const data = {
         userNumber: user?.phone,
         companionNumber: requestCompanion?.phone,
+        date,
+        userName,
+        companion:requestCompanion?.name,
+        userPlace,
+        roomNumber,
+        specialRequests,
+        clock,
+        time
       };
       const resSmsData = await sendSms(data);
+      setShowConfirmRequrst(false)
       // console.log(resSmsData, "gg");
 
       // if (resSmsData) {

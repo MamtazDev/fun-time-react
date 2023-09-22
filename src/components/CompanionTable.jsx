@@ -1,7 +1,17 @@
 import React from "react";
 import { dateFormater } from "./utils";
+import { deleteCompanion } from "../api/companion";
 
-const CompanionTable = ({ companions }) => {
+const CompanionTable = ({ companions, allCompanion }) => {
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you really want to delete this companion?")) {
+      const resData = await deleteCompanion(id)
+      if (resData) {
+        allCompanion()
+      }
+    }
+  }
+
   return (
     <section>
       <div className="container mx-auto">
@@ -20,6 +30,7 @@ const CompanionTable = ({ companions }) => {
               <th>Can</th>
               <th>Can't</th>
               <th>Joined</th>
+              <th>Action</th>
             </thead>
             <tbody>
               {companions.length > 0 &&
@@ -42,6 +53,9 @@ const CompanionTable = ({ companions }) => {
                     <td>{companion.can}</td>
                     <td>{companion.cant}</td>
                     <td>{dateFormater(companion.createdAt)}</td>
+                    <td>
+                      <button className="bg-[#FB869E] text-white text-[12px] px-[4px] rounded-[10px]" onClick={() => handleDelete(companion?._id)}>Remove</button>
+                    </td>
                   </tr>
                 ))}
             </tbody>

@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import slider from "../../assets/slider.png";
 import location from "../../assets/locationBlack.png";
-import clock from "../../assets/clockBlack.png";
+import clockk from "../../assets/clockBlack.png";
 import gender from "../../assets/genderBlack.png";
 import { AuthContext } from "../context/AuthContext";
-import { getSearchCompanion } from "../../api/companion";
 
 const PersonList = ({
   showPersonList,
@@ -13,7 +12,7 @@ const PersonList = ({
   setshowPersonDetails,
   setShowConfirmRequrst,
 }) => {
-  const { searchParams, setRequrestCompanion } = useContext(AuthContext);
+  const { searchParams, searchCompanions,clock,setRequrestCompanion } = useContext(AuthContext);
   const handleBack = () => {
     setShowGender(true);
     setshowPersonList(false);
@@ -31,19 +30,23 @@ const PersonList = ({
     setshowPersonDetails(true);
   };
 
-  console.log(searchParams);
 
-  const [companions, setCompanions] = useState([]);
+  const city = searchParams[0]?.split("=")[1]
+  const gnder = searchParams[1]?.split("=")[1]
 
-  const getCompanion = async () => {
-    const resData = await getSearchCompanion(searchParams);
-    // console.log(resData, "gg");
-    setCompanions(resData);
-  };
 
-  useEffect(() => {
-    getCompanion();
-  }, [searchParams]);
+
+
+
+  // const getCompanion = async () => {
+  //   const resData = await getSearchCompanion(searchParams);
+  //   // console.log(resData, "gg");
+  //   setCompanions(resData);
+  // };
+
+  // useEffect(() => {
+  //   getCompanion();
+  // }, [showPersonList]);
 
   return (
     <>
@@ -66,28 +69,28 @@ const PersonList = ({
                 <div className="flex items-center gap-1">
                   <img className="inline-block" src={location} alt="Location" />
                   <span className="text-[#000] text-[20px] md:text-[25px] font-[400]">
-                    Bangkok
+                    {city}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-1">
-                  <img className="inline-block" src={clock} alt="Time" />
+                  <img className="inline-block" src={clockk} alt="Time" />
                   <span className="text-[#000] text-[20px] md:text-[25px] font-[400]">
-                    03:30 PM
+                    {clock}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-1">
                   <img className="inline-block" src={gender} alt="Gender" />
-                  <span className="text-[#000] text-[20px] md:text-[25px] font-[400]">
-                    Female
+                  <span className="text-[#000] text-[20px] md:text-[25px] font-[400] capitalize">
+                    {gnder}
                   </span>
                 </div>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-[50px] pb-[35px]">
-              {companions.length > 0 &&
-                companions?.map((data, index) => (
+              {searchCompanions.length > 0 &&
+                searchCompanions?.map((data, index) => (
                   <div
                     onClick={() => handleDetails(data)}
                     key={index}
@@ -120,7 +123,7 @@ const PersonList = ({
                           |
                         </p>
                         <p className="text-[#000] text-[12px] md:text-[15px] font-[400]">
-                          {data?.height}
+                          {data?.measurement}
                         </p>
                       </div>
                       <button
