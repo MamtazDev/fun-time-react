@@ -6,6 +6,7 @@ import PersonList from "./Modal/PersonList";
 import PersonDetails from "./Modal/PersonDetails";
 import ConfirmRequest from "./Modal/ConfirmRequest";
 import { AuthContext } from "./context/AuthContext";
+import Autocomplete from "react-google-autocomplete";
 
 const Banner = ({ setShowSignInModal, showCity, setShowCity }) => {
   const [showTime, setShowTime] = useState(false);
@@ -26,6 +27,35 @@ const Banner = ({ setShowSignInModal, showCity, setShowCity }) => {
     <section>
       <div className="container mx-auto">
         <div className="banner pt-[30px] text-center">
+          <div className="mb-[100px]">
+            {/* <h3>Google auto complete search with google key</h3> */}
+
+            {/* <Autocomplete
+              apiKey="AIzaSyCWbHt9QraFjrNcBM8F8FtXVOSdprebieo"
+              style={{
+                width: "45%",
+                margin: "0 auto",
+                padding: "10px",
+                borderRadius: "10px",
+              }}
+              onPlaceSelected={(place) => {
+                console.log(place);
+              }}
+              options={{
+                types: ["(regions)"],
+                componentRestrictions: { country: "ru" },
+              }}
+              defaultValue="Amsterdam"
+            /> */}
+
+            {/* <Autocomplete
+              apiKey="AIzaSyCWbHt9QraFjrNcBM8F8FtXVOSdprebieo"
+              onPlaceSelected={(place) => {
+                console.log(place);
+              }}
+            /> */}
+          </div>
+
           <h1 className="text-[#FB869E] text-[38px] md:text-[45px] lg:text-[85px] font-[700]  text-center mb-[30px]">
             A World Of Effortless Fun
           </h1>
