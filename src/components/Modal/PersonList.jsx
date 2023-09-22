@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import slider from "../../assets/slider.png";
 import location from "../../assets/locationBlack.png";
-import clock from "../../assets/clockBlack.png";
+import clockk from "../../assets/clockBlack.png";
 import gender from "../../assets/genderBlack.png";
 import { AuthContext } from "../context/AuthContext";
 
@@ -12,7 +12,7 @@ const PersonList = ({
   setshowPersonDetails,
   setShowConfirmRequrst,
 }) => {
-  const { searchParams, searchCompanions,  } = useContext(AuthContext);
+  const { searchParams, searchCompanions,clock,setRequrestCompanion } = useContext(AuthContext);
   const handleBack = () => {
     setShowGender(true);
     setshowPersonList(false);
@@ -30,10 +30,13 @@ const PersonList = ({
     setshowPersonDetails(true);
   };
 
-const city = searchParams[0]
+
+  const city = searchParams[0]?.split("=")[1]
+  const gnder = searchParams[1]?.split("=")[1]
 
 
-  const [companions, setCompanions] = useState([]);
+
+
 
   // const getCompanion = async () => {
   //   const resData = await getSearchCompanion(searchParams);
@@ -66,21 +69,21 @@ const city = searchParams[0]
                 <div className="flex items-center gap-1">
                   <img className="inline-block" src={location} alt="Location" />
                   <span className="text-[#000] text-[20px] md:text-[25px] font-[400]">
-                    Bangkok
+                    {city}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-1">
-                  <img className="inline-block" src={clock} alt="Time" />
+                  <img className="inline-block" src={clockk} alt="Time" />
                   <span className="text-[#000] text-[20px] md:text-[25px] font-[400]">
-                    03:30 PM
+                    {clock}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-1">
                   <img className="inline-block" src={gender} alt="Gender" />
-                  <span className="text-[#000] text-[20px] md:text-[25px] font-[400]">
-                    Female
+                  <span className="text-[#000] text-[20px] md:text-[25px] font-[400] capitalize">
+                    {gnder}
                   </span>
                 </div>
               </div>
@@ -120,7 +123,7 @@ const city = searchParams[0]
                           |
                         </p>
                         <p className="text-[#000] text-[12px] md:text-[15px] font-[400]">
-                          {data?.height}
+                          {data?.measurement}
                         </p>
                       </div>
                       <button
