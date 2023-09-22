@@ -6,9 +6,9 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
 const Slider = ({ setShowSignInModal, setShowCity }) => {
-  const { isSignedIn } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const handleExplore = () => {
-    if (isSignedIn) {
+    if (user) {
       setShowCity(true);
     } else {
       setShowSignInModal(true);
